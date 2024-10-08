@@ -12,7 +12,6 @@ player = Player()
 carmanager = CarManager()
 
 #key binding
-
 screen.listen()
 screen.onkey(player.move_up, "w")
 screen.onkey(player.move_right, "d")
