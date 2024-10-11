@@ -1,29 +1,39 @@
 from turtle import Turtle
 import random
-from player import Player
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
 POSITIONS = [-250, -150, -50, 50, 150, 250]
 
-player = Player()
-
 class CarManager:
     def __init__(self):
-        self.cars = []
+        self.cars = []  # Create a list to store all cars
+        self.car_creation_timer = random.randint(20, 50)  # Random interval for car creation
 
     def install_cars(self):
-        for turtle_number in range(0, 6):
-            new_car = Turtle(shape = "square")
-            new_car.penup()
-            new_car.color(COLORS[turtle_number])
-            new_car.goto(random.randint(300, 600), POSITIONS[turtle_number])  # Position outside the screen
-            self.cars.append(new_car)
+        # Add a new car to the list
+        new_car = Turtle("square")
+        new_car.shapesize(stretch_wid=1, stretch_len=2)  # Make the car wider
+        new_car.penup()
+        new_car.color(random.choice(COLORS))
+        new_car.goto(270, random.choice(POSITIONS))  # Start from the right edge of the screen
+        self.cars.append(new_car)  # Store the car in the list
+
+    def create_car_with_intervals(self):
+        # Decrease timer
+        self.car_creation_timer -= 1
+
+        # Create a new car if the timer reaches zero, then reset the timer
+        if self.car_creation_timer <= 0:
+            self.install_cars()
+            # Reset the timer to a new random value, creating random intervals between cars
+            self.car_creation_timer = random.randint(20, 50)
 
     def move_cars(self):
+        # Move all cars in the list
         for car in self.cars:
             car.backward(STARTING_MOVE_DISTANCE)
-    
+
     def playerHitCar(self):
-        if player 
+        pass
