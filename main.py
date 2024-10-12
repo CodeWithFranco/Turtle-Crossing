@@ -23,7 +23,11 @@ while game_is_on:
     time.sleep(0.1)
     screen.update()
     carmanager.move_cars()  # Add this line to move cars
-    
+
+    #Detect collision to turtle
+    if carmanager.detect_player_collision(player):
+        game_is_on = False
+        print("Game Over. You failed")
 
 screen.exitonclick()
 

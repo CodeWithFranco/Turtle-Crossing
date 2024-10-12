@@ -1,4 +1,5 @@
 from turtle import Turtle
+from player import Player
 import random
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
@@ -28,5 +29,10 @@ class CarManager:
         if not self.cars or self.cars[-1].xcor() < 255:  # Check the last car's position
             self.install_cars()
 
-    def playerHitCar(self):
-        pass
+    def detect_player_collision(self, player):
+        # Check if the player collides with any car
+        for car in self.cars:
+            if abs(car.xcor() - player.xcor()) < 30 and abs(car.ycor() - player.ycor()) < 20:
+                return True
+        return False
+
