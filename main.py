@@ -22,10 +22,13 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
-    carmanager.install_cars()
     carmanager.move_cars()  # Add this line to move cars
-
-
+    
 
 screen.exitonclick()
+
+
+
+
+
 
