@@ -17,10 +17,10 @@ screen.onkey(player.move_up, "w")
 screen.onkey(player.move_right, "d")
 screen.onkey(player.move_left, "a")
 
-
+speed = 0.1
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(speed)
     screen.update()
     carmanager.move_cars()  # Add this line to move cars
 
@@ -28,6 +28,11 @@ while game_is_on:
     if carmanager.detect_player_collision(player):
         game_is_on = False
         print("Game Over. You failed")
+
+    elif player.ycor() > 280:
+        player.goto(0, -280)
+        #speed *= 0.09
+
 
 screen.exitonclick()
 
