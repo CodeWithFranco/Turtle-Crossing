@@ -10,6 +10,7 @@ screen.tracer(0)
 
 player = Player()
 carmanager = CarManager()
+scoreboard = Scoreboard()
 
 #key binding
 screen.listen()
@@ -27,12 +28,13 @@ while game_is_on:
     #Detect collision to turtle
     if carmanager.detect_player_collision(player):
         game_is_on = False
-        print("Game Over. You failed")
-
+        scoreboard.game_over()
+        
     elif player.ycor() > 280:
+        scoreboard.point()
         player.goto(0, -280)
-        #speed *= 0.09
-
+        speed *= 0.9
+        print(speed)
 
 screen.exitonclick()
 
